@@ -30,15 +30,12 @@ public class GuestBook implements ActionListener {
 	static JButton addName = new JButton();
 	static JButton viewName = new JButton();
 	static ArrayList<String> list = new ArrayList<String>();
-	static String names;
+	static String names = " ";
+	static int counter = 1;
 	
 	public void GUI() {
 		addName.setText("Add Name");
 		viewName.setText("View Name");
-		list.add("Bob Banders");
-		list.add("Sandy Summers");
-		list.add("Greg Ganders");
-		list.add("Donny Doners");
 		panel.add(addName);
 		panel.add(viewName);
 		frame.add(panel);
@@ -60,7 +57,8 @@ public class GuestBook implements ActionListener {
 		
 		if(e.getSource()==viewName) {
 			for(int i=0; i<list.size(); i++){
-			names = list.get(i) + ", " + names;
+			names = names + "\n" + "Guest #" + counter + ": " + list.get(i);
+			counter++;
 			}
 			JOptionPane.showMessageDialog(null, names);
 			list.clear();
