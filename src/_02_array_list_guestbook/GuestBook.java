@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import _01_array_list_visualizer.data.ArrayList;
+
 public class GuestBook implements ActionListener {
 	// Create a GUI with two buttons. One button reads "Add Name" and the other button reads "View Names". 
 	// When the add name button is clicked, display an input dialog that asks the user to enter a name. Add
@@ -27,8 +29,16 @@ public class GuestBook implements ActionListener {
 	static JPanel panel = new JPanel();
 	static JButton addName = new JButton();
 	static JButton viewName = new JButton();
+	static ArrayList<String> list = new ArrayList<String>();
+	static String names;
 	
 	public void GUI() {
+		addName.setText("Add Name");
+		viewName.setText("View Name");
+		list.add("Bob Banders");
+		list.add("Sandy Summers");
+		list.add("Greg Ganders");
+		list.add("Donny Doners");
 		panel.add(addName);
 		panel.add(viewName);
 		frame.add(panel);
@@ -44,7 +54,16 @@ public class GuestBook implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==addName) {
-		String newName = JOptionPane.showInputDialog("Please enter a name");	
+		String newName = JOptionPane.showInputDialog("Please enter a name");
+		list.add(newName);
+		}
+		
+		if(e.getSource()==viewName) {
+			for(int i=0; i<list.size(); i++){
+			names = list.get(i) + ", " + names;
+			}
+			JOptionPane.showMessageDialog(null, names);
+			list.clear();
 		}
 	}
 
